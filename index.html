@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%; /* Set the input width to 100% */
+            box-sizing: border-box; /* Include padding and border in the width */
+        }
+
+        .user-profile {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-info {
+            flex-grow: 1;
+        }
+
+        .user-name {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .user-email {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .see-profile-button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="filterInput" placeholder="Type to filter users">
+    
+    <div id="userProfiles">
+        <div class="user-profile">
+            <img src="https://imageio.forbes.com/specials-images/imageserve/5c76b7d331358e35dd2773a9/0x0.jpg?format=jpg&crop=4401,4401,x0,y0,safe&height=416&width=416&fit=bounds" alt="Mark Zuckerberg" class="user-photo">
+            <div class="user-info">
+                <div class="user-name">Mark Zuckerberg</div>
+            </div>
+            <button class="see-profile-button" onclick="seeProfile('Mark Zuckerberg')">See Profile</button>
+        </div>
+        <div class="user-profile">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Sundar_pichai.png" alt="Sundar Pichai" class="user-photo">
+            <div class="user-info">
+                <div class="user-name">Sundar Pichai</div>
+            </div>
+            <button class="see-profile-button" onclick="seeProfile('Sundar Pichai')">See Profile</button>
+        </div>
+        <div class="user-profile">
+            <img src="https://media.cnn.com/api/v1/images/stellar/prod/230911112214-05-elon-musk-0616.jpg?c=original" alt="Elon Musk" class="user-photo">
+            <div class="user-info">
+                <div class="user-name">Elon Musk</div>
+            </div>
+            <button class="see-profile-button" onclick="seeProfile('Elon Musk')">See Profile</button>
+        </div>
+        <div class="user-profile">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd7MwGYem6MdB9MSKEZp7sy2OZrYCmVbWoyazuNgCbP97OfOytOaP6FZ-l6Jb-Y299ppI&usqp=CAU" alt="K Sivan" class="user-photo">
+            <div class="user-info">
+                <div class="user-name">K Sivan</div>
+            </div>
+            <button class="see-profile-button" onclick="seeProfile('K Sivan')">See Profile</button>
+        </div>
+    </div>
+    
+    <script>
+        function seeProfile(username) {
+            alert("You clicked 'See Profile' for " + username);
+            // You can replace the alert with code to show the user's profile details.
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterInput = document.getElementById("filterInput");
+            const userProfiles = document.querySelectorAll(".user-profile");
+
+            filterInput.addEventListener("input", function () {
+                const filter = filterInput.value.toLowerCase();
+                
+                userProfiles.forEach(profile => {
+                    const username = profile.querySelector(".user-name").textContent.toLowerCase();
+                    if (username.includes(filter)) {
+                        profile.style.display = "flex";
+                    } else {
+                        profile.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
